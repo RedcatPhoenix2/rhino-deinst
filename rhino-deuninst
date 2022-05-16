@@ -26,6 +26,13 @@ SELECTED=($( dialog --backtitle "Press 'space' to toggle an option, use arrow ke
   "17" "Openbox" OFF \
   "18" "UKUI" OFF \
   "19" "Phosh core" OFF \
+  "20" "Cutefish" OFF \
+  "21" "LXDE (Ubuntu)" OFF \
+  "22" "LXDE" OFF \
+  "23" "XFCE (Ubuntu)" OFF \
+  "24" "Enlightenment" OFF \
+  "25" "GNOME Flashback" OFF \
+  "26" "Qtile" OFF \
   3>&1 1>&2 2>&3))
 
 for i in "${SELECTED[@]}"; do
@@ -107,7 +114,35 @@ for i in "${SELECTED[@]}"; do
     19)
       desktop+=("phosh-core")
       login_manager="gdm3"
+      ;;
+    20)
+      desktop+=("cutefish-core")
+      login_manager="sddm"
       ;; 
+    21)
+      desktop+=("lubuntu-desktop")
+      login_manager="lxdm"
+      ;; 
+    22)
+      desktop+=("lxde")
+      login_manager="lxdm"
+      ;;
+    23)
+      desktop+=("xubuntu-desktop")
+      login_manager="lightdm"
+      ;;
+    24)
+      desktop+=("enlightenment")
+      login_manager="lightdm"
+      ;;
+    25)
+      desktop+=("gnome-session-flashback")
+      login_manager="gdm3"
+      ;;
+    26)
+      desktop+=("qtile")
+      login_manager="lightdm"
+      ;;
   esac
 done
 
@@ -133,8 +168,8 @@ else
   exit 1
 fi
 
-echo "Installing desktop and login manager..."
-sudo apt-get install -y ${desktop[@]} "${login_manager}" ${extra_packages}
+echo "Uninstalling desktop environment..."
+sudo apt-get remove -y ${desktop[@]} ${extra_packages} && sudo apt-get autoremove
 echo "Set login manager to $login_manager"
 sudo dpkg-reconfigure "${login_manager}"
 echo "Done!"
