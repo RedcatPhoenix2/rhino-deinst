@@ -1,6 +1,6 @@
 # Rhino DEUninst
 
-DEinst is a tool that easily uninstalls Desktop Environments.
+DEUninst is a tool that easily uninstalls Desktop Environments.
 
 ### Getting started
 Run `rhino-deuninst`. Use the up and down keys to navigate the list, press space to select/deselect DEs. Press enter to uninstall them.
